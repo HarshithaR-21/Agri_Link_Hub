@@ -5,21 +5,20 @@ const FarmerProductSchema = new mongoose.Schema(
     // farmerId: {
     //   type: mongoose.Schema.Types.ObjectId,
     //   ref: "Farmer",
-    //   required: true,
+    //   ,
     // },
 
     // Basic Product Info
-    productName: { type: String, required: true },
-    productCategory: { type: String, required: true }, // Vegetable, Fruit, Grain, etc.
+    productName: { type: String,  },
+    productCategory: { type: String,  }, // Vegetable, Fruit, Grain, etc.
     varietyType: { type: String },
     description: { type: String },
 
     // Quantity & Units
-    totalQuantity: { type: Number, required: true },
+    totalQuantity: { type: Number,  },
     unitType: {
       type: String,
       enum: ["kg", "ton", "liter", "bag", "crate", "packet", "piece", "other"],
-      required: true,
     },
     minimumOrderQuantity: { type: Number },
     packagingType: {
@@ -39,15 +38,15 @@ const FarmerProductSchema = new mongoose.Schema(
     // organicCertificateUrl: { type: String },
 
     // Pricing
-    pricePerUnit: { type: Number, required: true },
+    pricePerUnit: { type: Number,  },
 
     // Location & Logistics
     farmAddress: {
-      addressLine: { type: String, required: true },
-      village: { type: String, required: true },
-      district: { type: String, required: true },
-      state: { type: String, required: true },
-      pinCode: { type: String, required: true },
+      addressLine: { type: String,  },
+      village: { type: String,  },
+      district: { type: String,  },
+      state: { type: String,  },
+      pinCode: { type: String,  },
     },
 
     pickupLocation: {
@@ -66,7 +65,7 @@ const FarmerProductSchema = new mongoose.Schema(
 
     // Availability
     harvestedDate: { type: Date },
-    availabilityStartDate: { type: Date, required: true },
+    availabilityStartDate: { type: Date,  },
     availabilityEndDate: { type: Date },
 
     storageCondition: {
@@ -74,6 +73,10 @@ const FarmerProductSchema = new mongoose.Schema(
       enum: ["Normal", "Cold Storage", "Warehouse"],
       default: "Normal",
     },
+  
+    canDeliver: { type: String, enum: ["yes", "no"], default: "no" },
+
+    deliveryCharges: { type: Number, default: 0 },
 
     // Status
     status: {
@@ -87,4 +90,4 @@ const FarmerProductSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("FarmerProduct", FarmerProductSchema);
+module.exports = mongoose.model("farmerProduct", FarmerProductSchema);
